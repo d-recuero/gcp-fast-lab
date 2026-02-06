@@ -1,0 +1,13 @@
+# Definición del perímetro de seguridad (VPC-SC)
+# Usamos 'spec' para modo Dry-run (pruebas) como recomienda la docu
+use_explicit_dry_run_spec: true
+spec:
+  access_levels:
+    - geo_es # Solo permitimos acceso desde España
+  resources:
+    - $project_numbers:dev-spoke-0
+    - $project_numbers:prod-spoke-0
+  restricted_services:
+    - storage.googleapis.com
+    - compute.googleapis.com
+    - bigquery.googleapis.com

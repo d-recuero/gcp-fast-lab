@@ -1,0 +1,15 @@
+vpcs:
+  spoke-prod:
+    address_space:
+      - 10.1.1.0/24
+    subnets:
+      - name: prod-app-subnet
+        region: europe-west1
+        ip_cidr_range: 10.1.1.0/24
+    
+    peering:
+      peer_to_hub: true
+      export_routes: true
+      import_routes: true
+
+    host_project: $project_ids:net-prod-0

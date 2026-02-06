@@ -1,0 +1,10 @@
+vpcs:
+  hub:
+    address_space:
+      - 10.128.0.0/16
+    subnets:
+      - name: gcp-shared-hub-euw1
+        region: europe-west1
+        ip_cidr_range: 10.128.0.0/24
+    dns_policy:
+      inbound: true

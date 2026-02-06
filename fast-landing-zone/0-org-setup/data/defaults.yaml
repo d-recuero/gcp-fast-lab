@@ -1,0 +1,19 @@
+global:
+  billing_account: 012345-ABCDE-67890
+  organization:
+    domain: d-recuero.lab
+    id: "1234567890"
+    customer_id: C01234567
+
+projects:
+  defaults:
+    prefix: dr-fast
+  locations:
+    storage: europe-west1
+    logging: europe-west1
+
+context:
+  iam_principals:
+    gcp-organization-admins: group:gcp-admins@d-recuero.lab
+  locations:
+    primary: europe-west1

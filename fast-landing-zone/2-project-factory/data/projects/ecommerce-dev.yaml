@@ -1,0 +1,19 @@
+name: ecommerce-app-dev
+parent: $folder_ids:teams
+
+shared_vpc_service_config:
+  host_project: $project_ids:net-dev-0
+  network: $vpc_self_links:dev-spoke-0
+  subnets:
+    - region: europe-west1
+      name: dev-app-subnet
+
+services:
+  - compute.googleapis.com
+  - storage.googleapis.com
+  - stackdriver.googleapis.com
+
+labels:
+  app: ecommerce
+  env: dev
+  owner: david-recuero
