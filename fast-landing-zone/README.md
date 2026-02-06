@@ -1,23 +1,20 @@
-# GCP Enterprise Landing Zone - Fabric FAST Skeleton
+# GCP Fabric FAST - Landing Zone Lab
 
-Este repositorio contiene una maqueta funcional de una **Landing Zone empresarial** en Google Cloud, siguiendo el framework **Fabric FAST**. El objetivo es demostrar la separación de capas entre la infraestructura central y el despliegue de aplicaciones.
+Este repositorio contiene una maqueta técnica de una **Landing Zone escalable en Google Cloud**, siguiendo la metodología **Fabric FAST**. El objetivo es demostrar el uso de **YAML Factories** y la **interpolación de contexto** para automatizar la infraestructura.
 
-## Arquitectura de Referencia
-* **Stage 0 & 1 (Gobernanza):** Estructura jerárquica de la organización y despliegue de Service Accounts con privilegios mínimos (IAM Impersonation).
-* **Stage 2 (Networking):** Topología **Hub-and-Spoke**. Implementación de red centralizada (Hub) vinculada a entornos de desarrollo mediante **VPC Peering** y salida segura vía **Cloud NAT**.
-* **Stage 3 (Project Factory):** Automatización del ciclo de vida de proyectos mediante **YAML Factories**, utilizando interpolación de contextos (sintaxis `$`) para el desacoplamiento de etapas.
+## Estructura del Laboratorio (FAST)
 
-## Conceptos Técnicos Demostrados
-* **Separación de Ciclos de Vida:** Aislamiento entre la infraestructura base (Landing Zone) y los recursos de aplicación (Mundo B).
-* **Infrastructure as Code (IaC) via GitOps:** Definición de recursos mediante archivos de configuración declarativos, facilitando auditorías y escalabilidad.
-* **Shared VPC Architecture:** Configuración de proyectos de servicio que consumen recursos de red centralizados.
+* **`0-org-setup`**: Bootstrap y Resource Manager. Configuración de la organización y factorías de carpetas.
+* **`1-vpcsc`**: Seguridad perimetral. Control de exfiltración de datos mediante VPC Service Controls.
+* **`2-networking`**: Infraestructura de red. Diseño Hub-and-Spoke con Shared VPCs.
+* **`2-project-factory`**: Provisión de proyectos. Despliegue automatizado de entornos de aplicación.
 
-## Diagrama Lógico
-```text
-[ ON-PREMISE ] <---VPN/Interconnect---> [ HUB VPC (Shared Services) ]
-                                               |
-                            ---------------------------------------
-                            |                  |                  |
-                    [ SPOKE DEV ]      [ SPOKE PROD ]      [ SPOKE QA ]
-                            |
-                    ( App eCommerce )
+## Conceptos Clave Implementados
+
+* **YAML-driven Design**: Configuración 100% declarativa fuera del código de Terraform.
+* **Context Interpolation**: Uso de variables dinámicas (`$project_ids`, `$iam_principals`) para portabilidad entre entornos.
+* **Shared VPC**: Configuración de proyectos de servicio conectados a una infraestructura de red centralizada.
+* **VPC-SC Geo-fencing**: Niveles de acceso restringidos por geolocalización (España).
+
+---
+*Nota: Este laboratorio ha sido diseñado como ejercicio de aprendizaje para profundizar en los estándares actuales de infraestructura como código en GCP.*
